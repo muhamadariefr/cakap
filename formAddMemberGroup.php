@@ -24,7 +24,7 @@ if (!isset($_SESSION['unique_id'])) {
                     <input type="text" name="idGroup" value="<?php echo $_GET['idGroup'] ?>" hidden>
                 </div>
                 <div class="field button">
-                    <input type="submit" name="submit" value="Add Group">
+                    <input type="submit" name="submit" value="Add Member">
                 </div>
             </form>
         </section>
