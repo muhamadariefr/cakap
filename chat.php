@@ -49,7 +49,6 @@
     });
     </script>
     <script src="javascript/chat.js"></script>
-    <script src=""></script>
 </body>
 
 </html>

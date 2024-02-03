@@ -33,6 +33,7 @@
             <p style="color: #000;"><?php echo $row['status']; ?></p>
           </div>
         </div>
+        <a href="groups.php?user_id=<?php echo $row['unique_id']; ?>" class="logout">List Group</a>
         <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a>
       </header>
       <div class="search">
