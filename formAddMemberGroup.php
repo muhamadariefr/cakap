@@ -19,12 +19,12 @@ if (!isset($_SESSION['unique_id'])) {
 
             <form id="formAddMember" enctype="multipart/form-data" autocomplete="off">
                 <div class="field input">
-                    <label>Id User</label>
-                    <input type="text" name="idUser" placeholder="Masukan id user" required>
+                    <label>User ID</label>
+                    <input type="text" name="idUser" placeholder="Masukan User ID" required>
                     <input type="text" name="idGroup" value="<?php echo $_GET['idGroup'] ?>" hidden>
                 </div>
                 <div class="field button">
-                    <input type="submit" name="submit" value="Add Group">
+                    <input type="submit" name="submit" value="Tambah User">
                 </div>
             </form>
         </section>
