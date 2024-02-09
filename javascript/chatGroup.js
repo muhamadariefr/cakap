@@ -67,3 +67,7 @@ function scrollToBottom() {
 function addMember(idGroup) {
     window.location.href = "formAddMemberGroup.php?idGroup=" + idGroup;
 }
+
+function listMember(idGroup) {
+    window.location.href = "listMemberGroup.php?idGroup=" + idGroup;
+}

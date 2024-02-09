@@ -2,7 +2,7 @@
 session_start();
 include_once "php/config.php";
 if (!isset($_SESSION['unique_id'])) {
-  header("location: login.php");
+    header("location: login.php");
 }
 ?>
 <?php include_once "header.php"; ?>
@@ -12,17 +12,16 @@ if (!isset($_SESSION['unique_id'])) {
         <section class="chat-area">
             <header>
                 <?php
-        $id_group = mysqli_real_escape_string($conn, $_GET['id_group']);
-        $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
+                $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
                                     FROM groups g
                                     INNER JOIN member_group mg ON mg.id_user = {$_SESSION['unique_id']}
-                                    WHERE g.id = {$id_group}");
-        if (mysqli_num_rows($sql) > 0) {
-          $row = mysqli_fetch_assoc($sql);
-        } else {
-          header("location: users.php");
-        }
-        ?>
+                                    WHERE g.id = {$_GET['idGroup']}");
+                if (mysqli_num_rows($sql) > 0) {
+                    $row = mysqli_fetch_assoc($sql);
+                } else {
+                    header("location: users.php");
+                }
+                ?>
                 <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
                 <img src="php/images/<?php echo $row['img']; ?>" alt="">
                 <div class="details">
@@ -32,10 +31,16 @@ if (!isset($_SESSION['unique_id'])) {
                 </div>
                 <div>
                     <?php if ($row["id_role"] == 1) { ?>
-                    <button style="margin-left: 180px;" onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
-                        <i class="fas fa-user-plus"></i>
-                    </button>
+                        <button style="margin-left: 180px;" onclick="addMember(<?php echo $row['id']; ?>)"
+                            class="add-member">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
                     <?php } ?>
+
+                    <button style="margin-left: 180px;" onclick="listMember(<?php echo $row['id']; ?>)"
+                        class="add-member">
+                        List
+                    </button>
                 </div>
             </header>
             <div class="chat-box">
@@ -54,11 +59,11 @@ if (!isset($_SESSION['unique_id'])) {
         </section>
     </div>
     <script>
-    var btnFile = document.getElementById("btnFile");
-    var btnj = document.getElementById("file");
-    btnFile.addEventListener('click', function() {
-        btnj.click();
-    });
+        var btnFile = document.getElementById("btnFile");
+        var btnj = document.getElementById("file");
+        btnFile.addEventListener('click', function () {
+            btnj.click();
+        });
     </script>
     <script src="javascript/chatGroup.js"></script>
 </body>

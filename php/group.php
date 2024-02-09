@@ -24,7 +24,7 @@ if (mysqli_num_rows($query) == 0) {
             $you = "";
         }
 
-        $output .= '<a href="chatGroup.php?id_group=' . $row['id'] . '">
+        $output .= '<a href="chatGroup.php?idGroup=' . $row['id'] . '">
                         <div class="content">
                         <img src="php/images/' . $row['img'] . '" alt="">
                         <div class="details">
