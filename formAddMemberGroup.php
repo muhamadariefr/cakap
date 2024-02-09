@@ -8,10 +8,6 @@ if (!isset($_SESSION['unique_id'])) {
 <?php include_once "header.php"; ?>
 
 <body>
-    <div class="loading-screen">
-        <img class="loading-icon" src="chat.png" alt="Chat Icon">
-        <p>Cakap Messenger</p>
-    </div>
     <div class="wrapper">
         <section class="form signup">
             <header class="title-log-reg">Cakap Messenger
@@ -33,25 +29,6 @@ if (!isset($_SESSION['unique_id'])) {
         </footer>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Tampilkan layar loading
-            const loadingScreen = document.querySelector('.loading-screen');
-            loadingScreen.style.display = 'flex'; // Gunakan 'flex' agar ikon berada di tengah
-
-            // Sembunyikan halaman registrasi
-            const registrationPage = document.querySelector('.wrapper');
-            registrationPage.style.display = 'none';
-
-            // Tunda tampilan halaman registrasi selama 1000ms (1 detik)
-            setTimeout(function () {
-                // Sembunyikan layar loading
-                loadingScreen.style.display = 'none';
-
-                // Tampilkan halaman registrasi
-                registrationPage.style.display = 'block';
-            }, 2000);
-        });
-
         const form = document.getElementById("formAddMember");
 
         form.onsubmit = function (e) {
