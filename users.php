@@ -35,10 +35,7 @@ alert('<?= $SESSION['message'] ?>');
                         <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
                         <p style="color: #000;"><?php echo $row['status']; ?></p>
                     </div>
-                </div>
-                <a href="groups.php?user_id=<?php echo $row['unique_id']; ?>">
-
-                </a>
+                </div>                
                 <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>

@@ -8,6 +8,13 @@
   font-family: "Poppins", sans-serif;
 }
 
+.sender-name{
+  font-size: 12px;
+  color: #4a3985;
+  font-weight: bold;
+  text-align: right;
+  padding: 10px 0px;
+}
 .loading-screen {
   display: flex;
   flex-direction: column;
@@ -327,17 +334,20 @@ footer {
 }
 
 .add-member {
-  background: #fff;
-  color: #4a69bb;
+  background: none;
+  color: #fff;
   outline: none;
-  border: none;
-  padding: 15px;
+  border: none;  
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 100%;
   font-size: 15px;
   margin: 0px 5px;
+  transition: 0.3s;
 }
 
+.add-member:hover{
+  color: #797979;
+}
 .users header .logout {
   display: block;
   background: linear-gradient(#4a69bb, #4a3985);
@@ -398,7 +408,7 @@ footer {
   cursor: pointer;
   border: none;
   background: #fff;
-  color: #075e54;
+  color: #4a69bb;
   outline: none;
   border-radius: 0 5px 5px 0;
   transition: all 0.2s ease;

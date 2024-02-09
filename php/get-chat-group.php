@@ -12,13 +12,18 @@ if (isset($_SESSION['unique_id'])) {
     $today = date('Y-m-d');
     $yesterday = date('Y-m-d', strtotime('-1 days'));
 
-    $sql = "SELECT mg.*, u.img 
+    $sql = "SELECT mg.*, u.img, u.fname, u.lname 
             FROM message_group mg
             INNER JOIN users u ON u.unique_id = mg.message_from_id
-            WHERE mg.id_group = {$id_group}";
+            WHERE mg.id_group = {$id_group}
+            ORDER BY mg.timestamp ASC";
     $query = mysqli_query($conn, $sql);
+
+    $currentUserName = '';  // Variabel untuk melacak nama pengguna saat ini
+
     if (mysqli_num_rows($query) > 0) {
-        $currentStatus = '';  // Variable untuk menyimpan status tanggal saat ini
+        $currentStatus = '';  // Variabel untuk menyimpan status tanggal saat ini
+
         while ($row = mysqli_fetch_assoc($query)) {
             $timestamp = date('H:i', strtotime($row['timestamp']));
             $message_date = date('Y-m-d', strtotime($row['timestamp']));
@@ -41,6 +46,11 @@ if (isset($_SESSION['unique_id'])) {
                                 </div>';
                 $currentStatus = $status;
             }
+
+            // Tampilkan nama pengirim jika berubah
+            $senderName = $row['fname'] . ' ' . $row['lname'];
+            $senderClass = ($row['message_from_id'] === $id_user) ? 'outgoing-name' : 'incoming-name';
+            
             $nameFile = "";
             $files = ($row['file']);
             if (!empty($row['file'])) {
@@ -52,14 +62,16 @@ if (isset($_SESSION['unique_id'])) {
             if ($row['message_from_id'] === $id_user) {
                 $output .= '<div class="chat outgoing">
                                 <div class="details">
-                                    <p>' . $row['message'] . $nameFile .'<span class="timestamp"> <br>' . $timestamp . '</span></p>
+                                    <div class="sender-name">' . $senderName . '</div>
+                                    <p><span class="message-content">' . $row['message'] . $nameFile . '</span><span class="timestamp"> <br>' . $timestamp . '</span></p>
                                 </div>
                             </div>';
             } else {
                 $output .= '<div class="chat incoming">
                                     <img src="php/images/' . $row['img'] . '" alt="">
                                     <div class="details">
-                                        <p>' . $row['message'] . $nameFile .'<span class="timestamp"> <br>' . $timestamp . '</span></p>
+                                        <div class="sender-name">' . $senderName . '</div>
+                                        <p><span class="message-content">' . $row['message'] . $nameFile . '</span><span class="timestamp"> <br>' . $timestamp . '</span></p>
                                     </div>
                                 </div>';
             }
