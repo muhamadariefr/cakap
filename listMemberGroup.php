@@ -11,7 +11,6 @@ if (!isset($_SESSION['unique_id'])) {
     <div class="wrapper">
         <section class="chat-area">
             <header>
-
                 <?php
                 $sqlMember = mysqli_query($conn, "SELECT u.unique_id, u.fname, u.lname, u.img, u.status, mrg.name AS role
                                   FROM member_group mg
@@ -40,8 +39,18 @@ if (!isset($_SESSION['unique_id'])) {
                     header("location: users.php");
                     exit();
                 }
-                ?>
 
+                $sqlUser = mysqli_query($conn, "SELECT * FROM member_group
+                                                WHERE id_user='{$_SESSION['unique_id']}'
+                                                AND id_group='{$_GET['idGroup']}'");
+
+                if (mysqli_num_rows($sqlUser) > 0) {
+                    $rowUser = mysqli_fetch_assoc($sqlUser);
+                } else {
+                    header("location: users.php");
+                    exit();
+                }
+                ?>
 
                 <a href="chatGroup.php?idGroup=<?php echo $_GET['idGroup'] ?>" class="back-icon"><i
                         class="fas fa-arrow-left"></i></a>
@@ -67,7 +76,19 @@ if (!isset($_SESSION['unique_id'])) {
                             <?php echo "Last Name: " . $member['lname']; ?><br>
                             <?php echo "Image: " . $member['img']; ?><br>
                             <?php echo "Status: " . $member['status']; ?><br>
-                            <?php echo "Role ID: " . $member['role']; ?><br>
+                            <?php echo "Role: " . $member['role']; ?><br>
+
+                            <?php if ($rowUser["id_role"] == 1) { ?>
+                                <a
+                                    href="php/deleteMember.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>">DELETE</a>
+                                <br>
+                                <?php if ($member['role'] != 'Admin') { ?>
+                                    <a
+                                        href="php/setAdminGroup.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>">SET
+                                        ADMIN</a>
+                                    <br>
+                                <?php } ?>
+                            <?php } ?>
                             -----------------------
                         </li>
                     <?php } ?>
