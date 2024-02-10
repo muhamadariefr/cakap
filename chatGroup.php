@@ -25,21 +25,18 @@ if (!isset($_SESSION['unique_id'])) {
                 <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
                 <img src="php/images/<?php echo $row['img']; ?>" alt="">
                 <div class="details">
-                    <span>
+                    <span style="padding-right: 150px;">
                         <?php echo $row['name_group'] ?>
                     </span>
                 </div>
                 <div>
                     <?php if ($row["id_role"] == 1) { ?>
-                        <button style="margin-left: 180px;" onclick="addMember(<?php echo $row['id']; ?>)"
-                            class="add-member">
-                            <i class="fas fa-user-plus"></i>
-                        </button>
+                    <button style="margin-right: 15px" onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
+                        <i class="fas fa-user-plus"></i>
+                    </button>                   
                     <?php } ?>
-
-                    <button style="margin-left: 180px;" onclick="listMember(<?php echo $row['id']; ?>)"
-                        class="add-member">
-                        List
+                    <button onclick="listMember(<?php echo $row['id']; ?>)" class="add-member">
+                        <i class="fas fa-ellipsis-v"></i>
                     </button>
                 </div>
             </header>
@@ -59,11 +56,11 @@ if (!isset($_SESSION['unique_id'])) {
         </section>
     </div>
     <script>
-        var btnFile = document.getElementById("btnFile");
-        var btnj = document.getElementById("file");
-        btnFile.addEventListener('click', function () {
-            btnj.click();
-        });
+    var btnFile = document.getElementById("btnFile");
+    var btnj = document.getElementById("file");
+    btnFile.addEventListener('click', function() {
+        btnj.click();
+    });
     </script>
     <script src="javascript/chatGroup.js"></script>
 </body>

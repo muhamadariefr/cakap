@@ -66,33 +66,31 @@ if (!isset($_SESSION['unique_id'])) {
             </header>
 
             <div class="chat-box">
-                <ul>
-                    <?php
-                    foreach ($resultArray as $member) {
-                        ?>
-                        <li>
-                            <?php echo "Unique ID: " . $member['unique_id']; ?><br>
-                            <?php echo "First Name: " . $member['fname']; ?><br>
-                            <?php echo "Last Name: " . $member['lname']; ?><br>
-                            <?php echo "Image: " . $member['img']; ?><br>
-                            <?php echo "Status: " . $member['status']; ?><br>
-                            <?php echo "Role: " . $member['role']; ?><br>
-
-                            <?php if ($rowUser["id_role"] == 1) { ?>
-                                <a
-                                    href="php/deleteMember.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>">DELETE</a>
-                                <br>
-                                <?php if ($member['role'] != 'Admin') { ?>
-                                    <a
-                                        href="php/setAdminGroup.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>">SET
-                                        ADMIN</a>
-                                    <br>
-                                <?php } ?>
-                            <?php } ?>
-                            -----------------------
-                        </li>
-                    <?php } ?>
-                </ul>
+                <?php foreach ($resultArray as $member) { ?>
+                <div class="card">
+                    <div class="user-img-list">
+                        <img src="php/images/<?php echo $member['img']; ?>" alt="">
+                    </div>
+                    <div class="details">
+                        <p style="font-size: 12px"><?php echo $member['unique_id']; ?></p>
+                        <p style="font-weight: bold"><?php echo $member['fname']; ?> <strong></strong>
+                            <?php echo $member['lname']; ?></p>                        
+                        <p style="font-size: 10px;"><?php echo $member['role']; ?></p>
+                    </div>
+                    <div class="actions">
+                        <?php if ($rowUser["id_role"] == 1) { ?>
+                        <a href="php/deleteMember.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>"
+                            class="action-link">Hapus Member</a>
+                        <br>
+                        <?php if ($member['role'] != 'Admin') { ?>
+                        <a href="php/setAdminGroup.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>"
+                            class="action-link">Set Admin</a>
+                        <br>
+                        <?php } ?>
+                        <?php } ?>
+                    </div>
+                </div>
+                <?php } ?>
             </div>
 
             <div>
