@@ -9,7 +9,7 @@ if (!isset($_SESSION['unique_id'])) {
 
 <body>
     <div class="wrapper">
-        <section class="chat-area">
+        <section class="chat-area group-chat">
             <header>
                 <?php
                 $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
@@ -22,19 +22,23 @@ if (!isset($_SESSION['unique_id'])) {
                     header("location: users.php");
                 }
                 ?>
-                <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="users.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
                 <img src="php/images/<?php echo $row['img']; ?>" alt="">
                 <div class="details">
-                    <span style="padding-right: 150px;">
+                    <span style="padding: 0px 180px 0px 0px;">
                         <?php echo $row['name_group'] ?>
                     </span>
                 </div>
                 <div>
                     <?php if ($row["id_role"] == 1) { ?>
-                    <button style="margin-right: 15px" onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
+                    <button style="margin-right: 5px" onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
                         <i class="fas fa-user-plus"></i>
-                    </button>                   
+                    </button>
+                    <button onclick="DeleteGroup(<?php echo $row['id']; ?>, <?php echo $row['id']; ?>)" class="add-member">
+                        <i class="fas fa-trash"></i>
+                    </button>
                     <?php } ?>
+
                     <button onclick="listMember(<?php echo $row['id']; ?>)" class="add-member">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
@@ -63,6 +67,34 @@ if (!isset($_SESSION['unique_id'])) {
     });
     </script>
     <script src="javascript/chatGroup.js"></script>
+    <script>
+    function DeleteGroup(groupId, userRole) {
+        if (userRole === 1) { 
+            var confirmation = confirm("Apakah Anda yakin ingin menghapus grup ini?");
+
+            if (confirmation) {
+                $.ajax({
+                    type: 'POST',
+                    url: './php/deleteGroup.php',
+                    data: {
+                        group_id: groupId
+                    },
+                    success: function(response) {
+                        if (response === "success") {
+                            window.location.href = "users.php";
+                        } else {
+                            alert("Gagal menghapus grup. Silakan coba lagi.");
+                        }
+                    }
+                });
+            }
+        } else {
+            alert("You don't have the permission to delete this group.");
+        }
+    }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </body>
 
 </html>

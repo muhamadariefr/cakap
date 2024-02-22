@@ -43,7 +43,7 @@ if (!empty($newFile)){
     }else{
         session_start();
 
-        $SESSION['message'] = "Data GGagal di Ubah";
+        $SESSION['message'] = "Data Gagal di Ubah";
 
         header("location: ../users.php");
     }
@@ -62,7 +62,7 @@ if (!empty($newFile)){
     }else{
         session_start();
 
-        $SESSION['message'] = "Data GGagal di Ubah";
+        $SESSION['message'] = "Data Gagal di Ubah";
 
         header("location: ../users.php");
     }

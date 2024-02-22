@@ -52,9 +52,9 @@ if (!isset($_SESSION['unique_id'])) {
                 }
                 ?>
 
-                <a href="chatGroup.php?idGroup=<?php echo $_GET['idGroup'] ?>" class="back-icon"><i
-                        class="fas fa-arrow-left"></i></a>
-
+                <a href="chatGroup.php?idGroup=<?php echo $_GET['idGroup'] ?>" class="back-icon">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
                 <img src="php/images/<?php echo $rowGroup['img']; ?>" alt="">
 
                 <div class="details">
@@ -74,17 +74,17 @@ if (!isset($_SESSION['unique_id'])) {
                     <div class="details">
                         <p style="font-size: 12px"><?php echo $member['unique_id']; ?></p>
                         <p style="font-weight: bold"><?php echo $member['fname']; ?> <strong></strong>
-                            <?php echo $member['lname']; ?></p>                        
+                            <?php echo $member['lname']; ?></p>
                         <p style="font-size: 10px;"><?php echo $member['role']; ?></p>
                     </div>
                     <div class="actions">
                         <?php if ($rowUser["id_role"] == 1) { ?>
                         <a href="php/deleteMember.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>"
-                            class="action-link">Hapus Member</a>
+                            class="action-link"><i class="fas fa-trash-alt"></i></a>
                         <br>
                         <?php if ($member['role'] != 'Admin') { ?>
                         <a href="php/setAdminGroup.php?idMember=<?php echo $member['unique_id']; ?>&idGroup=<?php echo $_GET["idGroup"]; ?>"
-                            class="action-link">Set Admin</a>
+                            class="action-link"><i class="fas fa-user-cog"></i></a>
                         <br>
                         <?php } ?>
                         <?php } ?>
