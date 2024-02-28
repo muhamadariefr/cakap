@@ -24,7 +24,7 @@ function createGroup($name, $image, $idUser)
     try {
         http_response_code(201);
 
-        $stmt = $conn->prepare("INSERT INTO groups (name_group, img, created_at, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)");
+        $stmt = $conn->prepare("INSERT INTO tbl_groups (name_group, img, created_at, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)");
         $stmt->bind_param("ss", $name, $image);
         $stmt->execute();
         $groupId = $conn->insert_id;

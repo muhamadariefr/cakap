@@ -13,7 +13,7 @@ if (!isset($_SESSION['unique_id'])) {
             <header>
                 <?php
                 $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
-                                    FROM groups g
+                                    FROM tbl_groups g
                                     INNER JOIN member_group mg ON mg.id_user = {$_SESSION['unique_id']}
                                     WHERE g.id = {$_GET['idGroup']}");
                 if (mysqli_num_rows($sql) > 0) {

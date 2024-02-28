@@ -5,7 +5,7 @@ $outgoing_id = $_SESSION['unique_id'];
 // die($outgoing_id);
 $sql = "SELECT g.* 
         FROM member_group mg
-        INNER JOIN groups g ON g.id = mg.id_group
+        INNER JOIN tbl_groups g ON g.id = mg.id_group
         WHERE id_user = {$outgoing_id}";
 $query = mysqli_query($conn, $sql);
 $output = "";
