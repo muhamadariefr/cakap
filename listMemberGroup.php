@@ -29,7 +29,7 @@ if (!isset($_SESSION['unique_id'])) {
                 }
 
                 $sqlGroup = mysqli_query($conn, "SELECT g.*, mg.id_role 
-                                FROM groups g
+                                FROM tbl_groups g
                                 INNER JOIN member_group mg ON mg.id_user = {$_SESSION['unique_id']}
                                 WHERE g.id = {$_GET['idGroup']}");
 
