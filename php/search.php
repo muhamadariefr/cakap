@@ -5,7 +5,15 @@
     $outgoing_id = $_SESSION['unique_id'];
     $searchTerm = mysqli_real_escape_string($conn, $_POST['searchTerm']);
 
-    $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} AND (fname LIKE '%{$searchTerm}%' OR lname LIKE '%{$searchTerm}%') ";
+    // $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} AND (fname LIKE '%{$searchTerm}%' OR lname LIKE '%{$searchTerm}%') ";
+
+
+    $sql = "select u.* from users u 
+    inner join contact_user cu on cu.id_user = u.unique_id 
+    where cu.id_user = {$outgoing_id}
+    AND (u.fname LIKE '%{$searchTerm}%' OR u.lname LIKE '%{$searchTerm}%')";
+
+
     $output = "";
     $query = mysqli_query($conn, $sql);
     

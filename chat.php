@@ -26,6 +26,9 @@
                     <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
                     <p><?php echo $row['status']; ?></p>
                 </div>
+                <div>
+                  <a href="./php/deleteContact.php?id_user=<?php echo $_SESSION['unique_id']; ?>&id_other_user=<?php echo $row['unique_id']; ?>">Delete</a>
+                </div>
             </header>
             <div class="chat-box">
 
