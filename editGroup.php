@@ -10,10 +10,7 @@ include_once "php/config.php";
         <p>Cakap Messenger</p>
     </div>
     <div class="wrapper">
-        <section class="form signup">
-            <header class="title-log-reg">Cakap Messenger
-            </header>
-
+        <section class="form signup">            
             <?php
             $idGroup = mysqli_real_escape_string($conn, $_GET['idGroup']);
             $sql = mysqli_query($conn, "SELECT * FROM tbl_groups WHERE id = {$idGroup}");
@@ -26,8 +23,8 @@ include_once "php/config.php";
 
             <form id="form-editGroup" enctype="multipart/form-data" autocomplete="off">
                 <div class="field input">
-                    <img src="php/images/<?php echo $row['img'] ?>" alt="">
-                    <label>Nama Group</label>
+                    <img class="preview-img" src="php/images/<?php echo $row['img'] ?>" alt="">
+                    <label>Nama Grup</label>
                     <input type="text" name="nameGroup" placeholder="Masukan nama grup" value="<?php echo $row['name_group'] ?>" required>
                     <input type="hidden" name="idGroup" value="<?php echo $_GET['idGroup']; ?>">
                 </div>
@@ -36,13 +33,10 @@ include_once "php/config.php";
                     <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                 </div>
                 <div class="field button">
-                    <input type="submit" name="submit" value="Edit Group">
+                    <input type="submit" name="submit" value="Ubah Grup">
                 </div>
             </form>
-        </section>
-        <footer>
-            <p>&#169; 2024 Cakap Messenger</p>
-        </footer>
+        </section>        
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
