@@ -20,7 +20,7 @@ if (!isset($_SESSION['unique_id'])) {
                     <input type="text" name="user_id" value="<?php echo $_GET['user_id'] ?>" hidden>
                 </div>
                 <div class="field button">
-                    <input type="submit" name="submit" value="Add User">
+                    <input type="submit" name="submit" value="Tambah Kontak">
                 </div>
             </form>
         </section>

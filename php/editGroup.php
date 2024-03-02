@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once 'config.php';
 
 header('Content-Type: application/json');
 
@@ -24,8 +24,6 @@ function editGroup($name, $image, $idGroup)
     try {
         http_response_code(201);
 
-
-
         if ($image == '') {
             $sql = "
         UPDATE tbl_groups
@@ -47,28 +45,25 @@ function editGroup($name, $image, $idGroup)
             $query = mysqli_query($conn, $sql);
         }
 
-
-
         if ($query) {
             return [
-                'status'    => 'success',
-                'message'   => 'Grup berhasil dirubah',
+                'status' => 'success',
+                'message' => 'Grup berhasil dirubah',
                 'timestamp' => time()
             ];
         } else {
             return [
-                'status'  => 'error',
+                'status' => 'error',
                 'message' => 'Terjadi kesalahan: ' . $e->getMessage()
             ];
         }
     } catch (Exception $e) {
         return [
-            'status'  => 'error',
+            'status' => 'error',
             'message' => 'Terjadi kesalahan: ' . $e->getMessage()
         ];
     }
 }
-
 
 function uploadImage()
 {
@@ -79,17 +74,17 @@ function uploadImage()
     $img_explode = explode('.', $img_name);
     $img_ext = strtolower(end($img_explode));
 
-    $allowed_extensions = ["jpeg", "png", "jpg"];
-    $allowed_types = ["image/jpeg", "image/jpg", "image/png"];
+    $allowed_extensions = ['jpeg', 'png', 'jpg'];
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png'];
 
     if (in_array($img_ext, $allowed_extensions) && in_array($img_type, $allowed_types)) {
         $new_img_name = time() . $img_name;
-        $destination_path = "images/" . $new_img_name;
+        $destination_path = 'images/' . $new_img_name;
 
         if (move_uploaded_file($tmp_name, $destination_path)) {
             return $new_img_name;
         }
     }
 
-    return "default.png";
+    return 'default.png';
 }

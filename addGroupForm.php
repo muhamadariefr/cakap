@@ -1,11 +1,11 @@
 <?php
 session_start();
-include_once "php/config.php";
+include_once 'php/config.php';
 if (!isset($_SESSION['unique_id'])) {
-    header("location: login.php");
+    header('location: login.php');
 }
 ?>
-<?php include_once "header.php"; ?>
+<?php include_once 'header.php'; ?>
 
 <body>
     <div class="loading-screen">
@@ -18,13 +18,13 @@ if (!isset($_SESSION['unique_id'])) {
             </header>
 
             <?php
-            $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-            $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
-            if (mysqli_num_rows($sql) > 0) {
-                $row = mysqli_fetch_assoc($sql);
-            } else {
-                header("location: users.php");
-            }
+                $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
+                $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+                if (mysqli_num_rows($sql) > 0) {
+                    $row = mysqli_fetch_assoc($sql);
+                } else {
+                    header('location: users.php');
+                }
             ?>
 
             <form id="form-addGroup" enctype="multipart/form-data" autocomplete="off">
@@ -38,7 +38,7 @@ if (!isset($_SESSION['unique_id'])) {
                     <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                 </div>
                 <div class="field button">
-                    <input type="submit" name="submit" value="Add Group">
+                    <input type="submit" name="submit" value="Buat Grup">
                 </div>
             </form>
         </section>
@@ -47,45 +47,45 @@ if (!isset($_SESSION['unique_id'])) {
         </footer>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Tampilkan layar loading
-            const loadingScreen = document.querySelector('.loading-screen');
-            loadingScreen.style.display = 'flex'; // Gunakan 'flex' agar ikon berada di tengah
+    document.addEventListener("DOMContentLoaded", function() {
+        // Tampilkan layar loading
+        const loadingScreen = document.querySelector('.loading-screen');
+        loadingScreen.style.display = 'flex'; // Gunakan 'flex' agar ikon berada di tengah
 
-            // Sembunyikan halaman registrasi
-            const registrationPage = document.querySelector('.wrapper');
-            registrationPage.style.display = 'none';
+        // Sembunyikan halaman registrasi
+        const registrationPage = document.querySelector('.wrapper');
+        registrationPage.style.display = 'none';
 
-            // Tunda tampilan halaman registrasi selama 1000ms (1 detik)
-            setTimeout(function () {
-                // Sembunyikan layar loading
-                loadingScreen.style.display = 'none';
+        // Tunda tampilan halaman registrasi selama 1000ms (1 detik)
+        setTimeout(function() {
+            // Sembunyikan layar loading
+            loadingScreen.style.display = 'none';
 
-                // Tampilkan halaman registrasi
-                registrationPage.style.display = 'block';
-            }, 2000);
-        });
+            // Tampilkan halaman registrasi
+            registrationPage.style.display = 'block';
+        }, 2000);
+    });
 
-        const form = document.getElementById("form-addGroup");
+    const form = document.getElementById("form-addGroup");
 
-        form.onsubmit = function (e) {
-            e.preventDefault();
+    form.onsubmit = function(e) {
+        e.preventDefault();
 
-            const formData = new FormData(form);
+        const formData = new FormData(form);
 
-            fetch('php/addGroup.php', {
+        fetch('php/addGroup.php', {
                 method: 'POST',
                 body: formData,
             })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.message);
-                    window.location.href = './groups.php';
-                })
-                .catch(error => {
-                    alert(data.message);
-                });
-        };
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.href = './groups.php';
+            })
+            .catch(error => {
+                alert(data.message);
+            });
+    };
     </script>
 
 </body>

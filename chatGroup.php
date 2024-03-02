@@ -1,41 +1,42 @@
 <?php
 session_start();
-include_once "php/config.php";
+include_once 'php/config.php';
 if (!isset($_SESSION['unique_id'])) {
-    header("location: login.php");
+    header('location: login.php');
 }
 ?>
-<?php include_once "header.php"; ?>
+<?php include_once 'header.php'; ?>
 
 <body>
     <div class="wrapper">
         <section class="chat-area group-chat">
             <header>
                 <?php
-                $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
+                    $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
                                     FROM tbl_groups g
                                     INNER JOIN member_group mg ON mg.id_user = {$_SESSION['unique_id']}
                                     WHERE g.id = {$_GET['idGroup']}");
-                if (mysqli_num_rows($sql) > 0) {
-                    $row = mysqli_fetch_assoc($sql);
-                } else {
-                    header("location: users.php");
-                }
+                    if (mysqli_num_rows($sql) > 0) {
+                        $row = mysqli_fetch_assoc($sql);
+                    } else {
+                        header('location: users.php');
+                    }
                 ?>
-
-                <div class="col-3 align-items-center">
-                    <a href="users.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
+                <div class="col-1">
+                    <a href="groups.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center">                    
                     <a href="editGroup.php?idGroup=<?php echo $_GET['idGroup']; ?>">
                         <img src="php/images/<?php echo $row['img']; ?>" alt="">
                     </a>
                 </div>
-                <div class="details col-6">
+                <div class="details col-5">
                     <span class="name-group">
                         <?php echo $row['name_group'] ?>
                     </span>
                 </div>
-                <div class="col">
-                    <?php if ($row["id_role"] == 1) { ?>
+                <div class="col d-flex justify-content-end align-items-center">
+                    <?php if ($row['id_role'] == 1) { ?>
                     <button onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
                         <i class="fas fa-user-plus"></i>
                     </button>
@@ -54,16 +55,16 @@ if (!isset($_SESSION['unique_id'])) {
 
             </div>
             <form action="#" class="typing-area" enctype="multipart/form-data">
-                <div name="btnFile" id="btnFile" class="BtnFile">
+                <div name="btnEmote" id="btnEmote" class="BtnEmote">
                     <i class="fas fa-smile"></i>
                 </div>
-                <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $row["id"]; ?>" hidden>
+                <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $row['id']; ?>" hidden>
                 <input type="text" class="id_user" name="id_user" value="<?php echo $_SESSION['unique_id']; ?>" hidden>
                 <input type="text" name="message" class="input-field" placeholder="Ketik pesan" autocomplete="off">
                 <div name="btnFile" id="btnFile" class="BtnFile">
                     <i class="fas fa-paperclip"></i>
                 </div>
-                <div name="btnFile" id="btnFile" class="BtnFile">
+                <div name="btnMic" id="btnMic" class="BtnMic">
                     <i class="fas fa-microphone"></i>
                 </div>
                 <input type="file" name="file" id="file" class="file" style="width: 50px; display: none;">
@@ -94,7 +95,7 @@ if (!isset($_SESSION['unique_id'])) {
                     },
                     success: function(response) {
                         if (response === "success") {
-                            window.location.href = "users.php";
+                            window.location.href = "groups.php";
                         } else {
                             alert("Gagal menghapus grup. Silakan coba lagi.");
                         }

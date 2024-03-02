@@ -391,11 +391,11 @@ footer {
   background: none;
   color: #fff;
   outline: none;  
-  padding: 8px;
+  padding: 4px;
   text-decoration: none;
   border-radius: 5px;
   font-size: 14px;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px;
   transition: 0.5s;
 }
 
@@ -427,14 +427,17 @@ footer {
   color: #fff;
   outline: none;
   border: none;
+  padding: 4px;
   text-decoration: none;  
-  font-size: 15px;
+  border-radius: 5px;
+  font-size: 14px;
   margin: 0px 5px;
   transition: 0.5s;
 }
 
 .add-member:hover {
-  color: #797979;
+  background: #fff;
+  color: #4a69bb;
 }
 
 .users header .logout {
@@ -685,6 +688,24 @@ footer {
 }
 
 .typing-area .BtnFile:hover{  
+  color: #fff;
+  background-color: #4a69bb;
+}
+.typing-area .BtnEmote, .BtnMic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+  color: #4a69bb;
+  transition: all 0.3s ease;  
+  border-radius: 100%;
+}
+
+.typing-area .BtnEmote:hover, .BtnMic:hover{  
   color: #fff;
   background-color: #4a69bb;
 }

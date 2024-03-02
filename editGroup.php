@@ -4,11 +4,7 @@ include_once "php/config.php";
 ?>
 <?php include_once "header.php"; ?>
 
-<body>
-    <div class="loading-screen">
-        <img class="loading-icon" src="chat.png" alt="Chat Icon">
-        <p>Cakap Messenger</p>
-    </div>
+<body>    
     <div class="wrapper">
         <section class="form signup">            
             <?php
@@ -20,7 +16,7 @@ include_once "php/config.php";
                 header("location: users.php");
             }
             ?>
-
+            <p class="text-center fw-bold">Edit Grup</p>
             <form id="form-editGroup" enctype="multipart/form-data" autocomplete="off">
                 <div class="field input">
                     <img class="preview-img" src="php/images/<?php echo $row['img'] ?>" alt="">
