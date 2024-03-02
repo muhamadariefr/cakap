@@ -31,7 +31,15 @@
                 <div class="contact-grouplist col">
                     <a href="./php/deleteContact.php?id_user=<?php echo $_SESSION['unique_id']; ?>&id_other_user=<?php echo $row['unique_id']; ?>"
                         class="del-contact">
-                        <i class="fas fa-trash"></i> Hapus Kontak
+                        <i class="fas fa-video"></i>
+                    </a>
+                    <a href="./php/deleteContact.php?id_user=<?php echo $_SESSION['unique_id']; ?>&id_other_user=<?php echo $row['unique_id']; ?>"
+                        class="del-contact">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="./php/deleteContact.php?id_user=<?php echo $_SESSION['unique_id']; ?>&id_other_user=<?php echo $row['unique_id']; ?>"
+                        class="del-contact">
+                        <i class="fas fa-trash"></i>
                     </a>
                 </div>
             </header>
@@ -39,10 +47,16 @@
 
             </div>
             <form action="#" class="typing-area" enctype="multipart/form-data">
+                <div name="btnFile" id="btnFile" class="BtnFile">
+                    <i class="fas fa-smile"></i>
+                </div>
                 <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
                 <input type="text" name="message" class="input-field" placeholder="Ketik pesan" autocomplete="off">
                 <div name="btnFile" id="btnFile" class="BtnFile">
                     <i class="fas fa-paperclip"></i>
+                </div>
+                <div name="btnFile" id="btnFile" class="BtnFile">
+                    <i class="fas fa-microphone"></i>
                 </div>
                 <input type="file" name="file" id="file" class="file" style="width: 50px; display: none;">
                 <button id="sendBtnChat"><i class="fab fa-telegram-plane"></i></button>

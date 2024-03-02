@@ -36,7 +36,7 @@ if (!isset($_SESSION['unique_id'])) {
                 </div>
                 <div class="col">
                     <?php if ($row["id_role"] == 1) { ?>
-                    <button style="margin-right: 5px" onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
+                    <button onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
                         <i class="fas fa-user-plus"></i>
                     </button>
                     <button onclick="DeleteGroup(<?php echo $_GET['idGroup']; ?>, <?php echo $row['id_role']; ?>)"
@@ -54,11 +54,17 @@ if (!isset($_SESSION['unique_id'])) {
 
             </div>
             <form action="#" class="typing-area" enctype="multipart/form-data">
+                <div name="btnFile" id="btnFile" class="BtnFile">
+                    <i class="fas fa-smile"></i>
+                </div>
                 <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $row["id"]; ?>" hidden>
                 <input type="text" class="id_user" name="id_user" value="<?php echo $_SESSION['unique_id']; ?>" hidden>
                 <input type="text" name="message" class="input-field" placeholder="Ketik pesan" autocomplete="off">
                 <div name="btnFile" id="btnFile" class="BtnFile">
                     <i class="fas fa-paperclip"></i>
+                </div>
+                <div name="btnFile" id="btnFile" class="BtnFile">
+                    <i class="fas fa-microphone"></i>
                 </div>
                 <input type="file" name="file" id="file" class="file" style="width: 50px; display: none;">
                 <button id="sendBtnChat"><i class="fab fa-telegram-plane"></i></button>

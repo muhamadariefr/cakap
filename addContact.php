@@ -43,6 +43,7 @@ if (!isset($_SESSION['unique_id'])) {
                 .then(response => response.json())
                 .then(data => {
                     alert(data.message);
+                    window.location.href = './users.php';
                 })
                 .catch(error => {
                     alert(data.message);

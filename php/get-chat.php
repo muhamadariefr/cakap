@@ -26,9 +26,9 @@ if (isset($_SESSION['unique_id'])) {
             // Menentukan status pesan (hari ini, kemarin, atau sebelumnya)
             $status = '';
             if ($message_date == $today) {
-                $status = 'HARI INI';
+                $status = 'Hari ini';
             } elseif ($message_date == $yesterday) {
-                $status = 'KEMARIN';
+                $status = 'Kemarin';
             } else {
                 $status = date('d M Y', strtotime($row['timestamp']));
             }

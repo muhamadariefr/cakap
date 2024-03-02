@@ -390,13 +390,12 @@ footer {
 .del-contact {
   background: none;
   color: #fff;
-  outline: none;
-  border: 1px solid #fff;
-  padding: 5px;
+  outline: none;  
+  padding: 8px;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 10px;
-  margin: 0px 5px;
+  font-size: 14px;
+  margin: 0px 5px 0px 5px;
   transition: 0.5s;
 }
 
@@ -428,11 +427,10 @@ footer {
   color: #fff;
   outline: none;
   border: none;
-  text-decoration: none;
-  border-radius: 100%;
+  text-decoration: none;  
   font-size: 15px;
   margin: 0px 5px;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 .add-member:hover {
@@ -656,18 +654,18 @@ footer {
   border-radius: 18px 18px 18px 0;
 }
 
-.typing-area {
-  padding: 18px 30px;
+.typing-area {  
+  padding: 10px 10px;
   display: flex;
   justify-content: space-between;
 }
 
 .typing-area input {
-  height: 45px;
+  height: auto;
   width: calc(100% - 58px);
   font-size: 16px;
   padding: 0 13px;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #fff;
   outline: none;
   border-radius: 5px 0 0 5px;
 }
@@ -676,26 +674,40 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45px;
-  width: 50px;
-  font-size: 19px;
+  height: auto;
+  width: auto;
+  font-size: 18px;
+  padding: 10px;
   cursor: pointer;
-  color: #67676a;
-  transition: all 0.3s ease;
+  color: #4a69bb;
+  transition: all 0.3s ease;  
+  border-radius: 100%;
+}
+
+.typing-area .BtnFile:hover{  
+  color: #fff;
+  background-color: #4a69bb;
 }
 
 
 .typing-area button {
-  color: #fff;
-  width: 55px;
+  color: #4a69bb;
+  width: 50px;
   border: none;
   outline: none;
-  background: linear-gradient(to left, #4a69bb, #4a3985);
+  background: #fff;
+  /* background: linear-gradient(to left, #4a69bb, #4a3985); */
   font-size: 19px;
   cursor: pointer;
   pointer-events: none;
   border-radius: 0 5px 5px 0;
   transition: all 0.3s ease;
+  border-radius: 100%;
+}
+
+.typing-area button:hover{  
+  color: #fff;
+  background-color: #4a69bb;
 }
 
 .typing-area button.active {
@@ -795,8 +807,7 @@ footer {
     min-height: 100vh;
   }
 
-  .typing-area {
-    background-color: #fff;
+  .typing-area {    
     margin: 0px 0px 0px 0px;
   }
 }
