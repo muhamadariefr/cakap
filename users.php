@@ -21,6 +21,7 @@ alert('<?= $SESSION['message'] ?>');
         <?php if (isset($_SESSION['message'])) { ?>
             <script>
                 alert("<?php echo $_SESSION['message']; ?>");
+                <?php $_SESSION['message'] = null; ?>
             </script>
 
         <?php } ?>
