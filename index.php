@@ -1,8 +1,8 @@
 <?php 
-  session_start();
-  if(isset($_SESSION['unique_id'])){
-    header("location: users.php");
-  }
+    session_start();
+    if(isset($_SESSION['unique_id'])){
+        header("location: users.php");
+    }
 ?>
 
 <?php include_once "header.php"; ?>
@@ -14,9 +14,7 @@
     </div>
     <div class="wrapper">
         <section class="form signup">
-            <header class="title-log-reg">Cakap Messenger
-            </header>
-
+            <header class="title-log-reg text-center fs-5">Daftar Akun</header>
             <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="error-text"></div>
                 <div class="name-details">

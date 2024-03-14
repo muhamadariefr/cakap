@@ -10,7 +10,14 @@ if (!isset($_SESSION['unique_id'])) {
 <body>
     <div class="wrapper">
         <section class="form signup">
-            <header class="title-log-reg">Cakap Messenger
+            <header class="fs-5 d-flex justify-content-center align-items-center">
+                <div class="col-1 text-center">
+                    <a href="groups.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
+                </div>
+                <div class="col-10 text-center">
+                    <p style="margin: 0;">Cakap Messenger</p>
+                </div>
+                <div class="col-1"></div>
             </header>
 
             <form id="formAddMember" enctype="multipart/form-data" autocomplete="off">
@@ -29,26 +36,26 @@ if (!isset($_SESSION['unique_id'])) {
         </footer>
     </div>
     <script>
-        const form = document.getElementById("formAddMember");
+    const form = document.getElementById("formAddMember");
 
-        form.onsubmit = function (e) {
-            e.preventDefault();
+    form.onsubmit = function(e) {
+        e.preventDefault();
 
-            const formData = new FormData(form);
+        const formData = new FormData(form);
 
-            fetch('php/addMember.php', {
+        fetch('php/addMember.php', {
                 method: 'POST',
                 body: formData,
             })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.message);
-                    window.location.href = './groups.php';
-                })
-                .catch(error => {
-                    alert(data.message);
-                });
-        };
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.href = './groups.php';
+            })
+            .catch(error => {
+                alert(data.message);
+            });
+    };
     </script>
 
 </body>

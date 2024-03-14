@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
+  font-family: Helvetica;
 }
 
 .preview-img {
@@ -199,10 +199,6 @@ footer {
   border-radius: 16px;
   box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
     0 32px 64px -48px rgba(0, 0, 0, 0.5);
-}
-
-.title-log-reg {
-  text-align: center;
 }
 
 /* Login & Signup Form CSS Start */
@@ -440,10 +436,10 @@ footer {
   color: #4a69bb;
 }
 
-.users header .logout {
+/* .users header .logout {
   display: block;
   background: linear-gradient(#4a69bb, #4a3985);
-  /* background: #075e54; */
+  
   color: #fff;
   outline: none;
   border: none;
@@ -451,7 +447,7 @@ footer {
   text-decoration: none;
   border-radius: 5px;
   font-size: 17px;
-}
+} */
 
 .users .contact-grouplist {
   margin: 5px 0;
@@ -765,10 +761,10 @@ footer {
     width: 45px;
   }
 
-  .users header .logout {
+  /* .users header .logout {
     padding: 6px 10px;
     font-size: 12px;
-  }
+  } */
 
 
   :is(.users, .users-list) .content .details {

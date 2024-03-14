@@ -1,16 +1,20 @@
-<?php 
-  session_start();
-  if(isset($_SESSION['unique_id'])){
-    header("location: users.php");
-  }
+<?php
+    session_start();
+    if (isset($_SESSION['unique_id'])) {
+        header('location: users.php');
+    }
 ?>
 
-<?php include_once "header.php"; ?>
+<?php include_once 'header.php'; ?>
 
 <body>
+    <div class="loading-screen">
+        <img class="loading-icon" src="chat.png" alt="Chat Icon">
+        <p>Cakap Messenger</p>
+    </div>
     <div class="wrapper">
         <section class="form login">
-            <header class="title-log-reg">Cakap Messenger</header>
+            <header class="title-log-reg text-center fs-5">Login</header>
             <img src="chat.png" alt="logo" width="100px" class="centered-image">
             <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="error-text"></div>
@@ -33,7 +37,26 @@
             <p>&#169; 2024 Cakap Messenger</p>
         </footer>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Tampilkan layar loading
+        const loadingScreen = document.querySelector('.loading-screen');
+        loadingScreen.style.display = 'flex'; // Gunakan 'flex' agar ikon berada di tengah
 
+        // Sembunyikan halaman registrasi
+        const registrationPage = document.querySelector('.wrapper');
+        registrationPage.style.display = 'none';
+
+        // Tunda tampilan halaman registrasi selama 1000ms (1 detik)
+        setTimeout(function() {
+            // Sembunyikan layar loading
+            loadingScreen.style.display = 'none';
+
+            // Tampilkan halaman registrasi
+            registrationPage.style.display = 'block';
+        }, 2000);
+    });
+    </script>
     <script src="javascript/pass-show-hide.js"></script>
     <script src="javascript/login.js"></script>
 

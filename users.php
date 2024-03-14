@@ -26,19 +26,76 @@ alert('<?= $SESSION['message'] ?>');
                         $row = mysqli_fetch_assoc($sql);
                     }
                     ?>
-                    <button type="button" class="" style="border: none; background: transparent; cursor:pointer;"
+                    <!-- <button type="button" class="" style="border: none; background: transparent; cursor:pointer;"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                         onclick="openModalProfile('<?= $row['unique_id'] ?>')">
-                        <img src="php/images/<?php echo $row['img']; ?>" alt="">
-                    </button>
+
+                    </button> -->
+                    <img src="php/images/<?php echo $row['img']; ?>" alt="">
                     <div class="details">
                         <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
                         <p style="color: #000;"><?php echo $row['status']; ?></p>
                     </div>
                 </div>
-                <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <div>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split border-0"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" style="font-size: 14px;">
+                        <li>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                onclick="openModalProfile('<?= $row['unique_id'] ?>')" class="dropdown-item">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-sm-1">
+                                        <i class="fas fa-user-edit"></i>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        Edit Profil
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="resetPassword.php?user_id=<?php echo $row['unique_id']; ?>" class="dropdown-item">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-sm-1">
+                                        <i class="fas fa-key"></i>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        Reset Password
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="deleteAccount('<?php echo $row['unique_id']; ?>')"
+                                class="dropdown-item">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-sm-1">
+                                        <i class="fas fa-user-alt-slash"></i>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        Hapus Akun
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="dropdown-item">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-sm-1">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        Keluar
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </header>
             <div class="contact-grouplist justify-content-start">
                 <a href="groups.php?user_id=<?php echo $row['unique_id']; ?>" class="lgrup">
@@ -90,28 +147,24 @@ alert('<?= $SESSION['message'] ?>');
                                         aria-describedby="inputGroup-sizing-sm" name="namaBelakang" id="namaBelakang">
                                 </div>
                             </div>
-
                             <div class="m-1">
                                 <label for="#">Email</label>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-sm" name="alamatEmail" id="alamatEmail">
                             </div>
-
                             <div class="m-1 mt-2">
                                 <label for="#">Pilih Gambar</label>
                                 <input type="file" class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-sm" name="fileUpdate" id="fileUpdate">
                             </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            <i class="fas fa-times"></i> Batal
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-sync-alt"></i> Update
-                        </button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                    <i class="fas fa-times"></i> Batal
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-sync-alt"></i> Update
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -168,7 +221,36 @@ alert('<?= $SESSION['message'] ?>');
 
     }
     </script>
+    <script>
+    function deleteAccount(userId) {
+        var confirmation = confirm("Apakah Anda yakin ingin menghapus akun ini?");
 
+        if (confirmation) {
+            $.ajax({
+                type: 'GET',
+                url: 'php/deleteAccount.php',
+                data: {
+                    id_user: userId
+                },
+                success: function(response) {
+                    console.log("Ajax success:", response); // Debugging statement
+                    if (response.trim() === "success") {
+                        window.location.href = "index.php";
+                    } else {
+                        alert("Gagal menghapus Akun. Silakan coba lagi.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Ajax error:", status, error); // Debugging statement
+                    alert("Terjadi kesalahan saat menghubungi server.");
+                }
+            });
+        }
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

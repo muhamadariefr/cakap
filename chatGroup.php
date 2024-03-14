@@ -25,7 +25,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <div class="col-1">
                     <a href="groups.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
                 </div>
-                <div class="col-2 d-flex justify-content-center align-items-center">                    
+                <div class="col-2 d-flex justify-content-center align-items-center">
                     <a href="editGroup.php?idGroup=<?php echo $_GET['idGroup']; ?>">
                         <img src="php/images/<?php echo $row['img']; ?>" alt="">
                     </a>
@@ -40,15 +40,43 @@ if (!isset($_SESSION['unique_id'])) {
                     <button onclick="addMember(<?php echo $row['id']; ?>)" class="add-member">
                         <i class="fas fa-user-plus"></i>
                     </button>
-                    <button onclick="DeleteGroup(<?php echo $_GET['idGroup']; ?>, <?php echo $row['id_role']; ?>)"
-                        class="add-member">
-                        <i class="fas fa-trash"></i>
-                    </button>
                     <?php } ?>
 
-                    <button onclick="listMember(<?php echo $row['id']; ?>)" class="add-member">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
+                    <div>
+                        <button type="button" class="del-contact btn dropdown-toggle dropdown-toggle-split border-0"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" style="font-size: 14px;">
+                            <li>
+                                <a href="#"
+                                    onclick="DeleteGroup(<?php echo $_GET['idGroup']; ?>, <?php echo $row['id_role']; ?>)"
+                                    class="dropdown-item">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-sm-1">
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            Hapus Grup
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-item" onclick="listMember(<?php echo $row['id']; ?>)">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-sm-1">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            Info Grup
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
             </header>
             <div class="chat-box">
@@ -108,7 +136,12 @@ if (!isset($_SESSION['unique_id'])) {
     }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

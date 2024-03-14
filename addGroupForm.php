@@ -14,7 +14,14 @@ if (!isset($_SESSION['unique_id'])) {
     </div>
     <div class="wrapper">
         <section class="form signup">
-            <header class="title-log-reg">Cakap Messenger
+            <header class="fs-5 d-flex justify-content-center align-items-center">
+                <div class="col-1 text-center">
+                    <a href="groups.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
+                </div>
+                <div class="col-10 text-center">
+                    <p style="margin: 0;">Cakap Messenger</p>
+                </div>
+                <div class="col-1"></div>
             </header>
 
             <?php
@@ -29,7 +36,7 @@ if (!isset($_SESSION['unique_id'])) {
 
             <form id="form-addGroup" enctype="multipart/form-data" autocomplete="off">
                 <div class="field input">
-                    <label>Nama Group</label>
+                    <label>Nama Grup</label>
                     <input type="text" name="nameGroup" placeholder="Masukan nama grup" required>
                     <input type="hidden" name="userId" value="<?php echo $user_id; ?>">
                 </div>
