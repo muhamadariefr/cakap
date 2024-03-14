@@ -17,6 +17,14 @@ alert('<?= $SESSION['message'] ?>');
 
 <body>
     <div class="wrapper">
+
+        <?php if (isset($_SESSION['message'])) { ?>
+            <script>
+                alert("<?php echo $_SESSION['message']; ?>");
+            </script>
+
+        <?php } ?>
+
         <section class="users">
             <header>
                 <div class="content">

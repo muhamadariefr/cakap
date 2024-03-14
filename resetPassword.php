@@ -24,8 +24,9 @@ include_once 'header.php';
                 <div class="col-1"></div>
             </header>
 
-            <form action="resetPass.php" method="post" autocomplete="off">
+            <form action="php/resetPass.php" method="post" autocomplete="off">
                 <div class="field input">
+                    <input type="hidden" value="<?php echo $_GET['user_id'] ?>" name="unique_id">
                     <label>New Password</label>
                     <input type="password" name="new_password" placeholder="Enter new password" required>
                 </div>
