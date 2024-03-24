@@ -97,19 +97,13 @@ if (!isset($_SESSION['unique_id'])) {
             <div class="chat-box">
 
             </div>
-            <form action="#" class="typing-area" enctype="multipart/form-data">
-                <div name="btnEmote" id="btnEmote" class="BtnEmote">
-                    <i class="fas fa-smile"></i>
-                </div>
+            <form action="#" class="typing-area" enctype="multipart/form-data">                
                 <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $row['id']; ?>" hidden>
                 <input type="text" class="id_user" name="id_user" value="<?php echo $_SESSION['unique_id']; ?>" hidden>
                 <input type="text" name="message" class="input-field" placeholder="Ketik pesan" autocomplete="off">
                 <div name="btnFile" id="btnFile" class="BtnFile">
                     <i class="fas fa-paperclip"></i>
-                </div>
-                <div name="btnMic" id="btnMic" class="BtnMic">
-                    <i class="fas fa-microphone"></i>
-                </div>
+                </div>                
                 <input type="file" name="file" id="file" class="file" style="width: 50px; display: none;">
                 <button id="sendBtnChat"><i class="fab fa-telegram-plane"></i></button>
             </form>
