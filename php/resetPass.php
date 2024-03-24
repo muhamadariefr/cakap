@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'php/config.php';
+include_once "config.php";
 
 if (!isset($_SESSION['unique_id'])) {
     header('location: login.php');
@@ -8,10 +8,10 @@ if (!isset($_SESSION['unique_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the user ID from the session
-    $user_id = $_SESSION['unique_id'];
+    global $conn;
 
-    // Sanitize and validate the new password
+    $unique_id = $_POST['unique_id'];
+
     $new_password = mysqli_real_escape_string($conn, $_POST['new_password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
 
@@ -20,20 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($new_password !== $confirm_password) {
         $_SESSION['message'] = "Passwords do not match.";
     } else {
-        // Hash the new password before updating it in the database
-        $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
-
-        // Update the password in the database
-        $update_query = "UPDATE users SET password = '$hashed_password' WHERE unique_id = '$user_id'";
+        $hashed_password = md5($new_password);
+        $update_query = "UPDATE users SET password = '$hashed_password' WHERE unique_id = '$unique_id'";
         mysqli_query($conn, $update_query);
 
         $_SESSION['message'] = "Password updated successfully.";
     }
 
-    header('location: users.php');
+    header('location: ../users.php');
     exit();
 } else {
-    header('location: resetPassword.php');
+    header('location: ../resetPassword.php');
     exit();
 }
 ?>

@@ -12,27 +12,30 @@ if (!isset($_SESSION['unique_id'])) {
         <section class="chat-area group-chat">
             <header>
                 <?php
-                    $sql = mysqli_query($conn, "SELECT g.*, mg.id_role 
+                $sql = mysqli_query($conn, "SELECT g.*, mg.id_role, COUNT(mg.id_user) AS total_members
                                     FROM tbl_groups g
-                                    INNER JOIN member_group mg ON mg.id_user = {$_SESSION['unique_id']}
+                                    INNER JOIN member_group mg ON mg.id_group = g.id
                                     WHERE g.id = {$_GET['idGroup']}");
-                    if (mysqli_num_rows($sql) > 0) {
-                        $row = mysqli_fetch_assoc($sql);
-                    } else {
-                        header('location: users.php');
-                    }
+                if (mysqli_num_rows($sql) > 0) {
+                    $row = mysqli_fetch_assoc($sql);
+                } else {
+                    header('location: users.php');
+                }
                 ?>
                 <div class="col-1">
                     <a href="groups.php" class="back-icon"><i class="fas fa-chevron-left"></i></a>
                 </div>
                 <div class="col-2 d-flex justify-content-center align-items-center">
-                    <a href="editGroup.php?idGroup=<?php echo $_GET['idGroup']; ?>">
-                        <img src="php/images/<?php echo $row['img']; ?>" alt="">
-                    </a>
+                    <img src="php/images/<?php echo $row['img']; ?>" alt="">
                 </div>
                 <div class="details col-5">
                     <span class="name-group">
-                        <?php echo $row['name_group'] ?>
+                        <div class="col fw-bold">
+                            <?php echo $row['name_group'] ?>
+                        </div>
+                        <div class="col" style="font-size: 12px; color: #e6e6e6;">
+                            <?php echo $row['total_members']; ?> Member
+                        </div>
                     </span>
                 </div>
                 <div class="col d-flex justify-content-end align-items-center">
@@ -48,6 +51,18 @@ if (!isset($_SESSION['unique_id'])) {
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" style="font-size: 14px;">
+                            <li>
+                                <a href="editGroup.php?idGroup=<?php echo $_GET['idGroup']; ?>" class="dropdown-item">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-sm-1">
+                                            <i class="fas fa-edit"></i>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            Edit Grup
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
                             <li>
                                 <a href="#"
                                     onclick="DeleteGroup(<?php echo $_GET['idGroup']; ?>, <?php echo $row['id_role']; ?>)"

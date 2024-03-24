@@ -40,66 +40,7 @@ alert('<?= $SESSION['message'] ?>');
                             <?php echo $row['status']; ?>
                         </p>
                     </div>
-                </div>
-
-                <div>
-                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split border-0"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" style="font-size: 14px;">
-                        <li>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                onclick="openModalProfile('<?= $row['unique_id'] ?>')" class="dropdown-item">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-sm-1">
-                                        <i class="fas fa-user-circle"></i>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        Profil
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="resetPassword.php?id_user=<?php echo $row['unique_id']; ?>" class="dropdown-item">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-sm-1">
-                                        <i class="fas fa-key"></i>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        Reset Password
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" onclick="deleteAccount('<?php echo $row['unique_id']; ?>')"
-                                class="dropdown-item">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-sm-1">
-                                        <i class="fas fa-user-alt-slash"></i>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        Hapus Akun
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="dropdown-item">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-sm-1">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        Keluar
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                </div>                
             </header>
             <div class="contact-grouplist">
                 <a href="users.php" class="contact">

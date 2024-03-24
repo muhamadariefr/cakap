@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: Helvetica;
+  font-family: 'Poppins';
 }
 
 .preview-img {
@@ -66,6 +66,23 @@
 }
 
 .action-link:hover {
+  background-color: #4a69bb;
+  color: #fff;
+}
+.left-action {
+  width: auto;
+  font-size: 12px;
+  color: #4a69bb;
+  text-decoration: none;
+  background-color: #fff;
+  border: #4a69bb 1px solid;
+  padding: 5px;
+  margin: 0px 3px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.left-action:hover {
   background-color: #4a69bb;
   color: #fff;
 }
@@ -182,7 +199,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url(bg-image.jpg);
+  background-image: url(./bg-image.jpg);
 }
 
 footer {
@@ -626,7 +643,7 @@ footer {
 
 .outgoing .details p {
   /* background: #075e54; */
-  background: linear-gradient(to left, #4a69bb, #4a3985);
+  background: linear-gradient( #4a69bb, #4a3985);
   color: #fff;
   border-radius: 18px 18px 0 18px;
 }
@@ -687,25 +704,6 @@ footer {
   color: #fff;
   background-color: #4a69bb;
 }
-.typing-area .BtnEmote, .BtnMic {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  width: auto;
-  font-size: 18px;
-  padding: 10px;
-  cursor: pointer;
-  color: #4a69bb;
-  transition: all 0.3s ease;  
-  border-radius: 100%;
-}
-
-.typing-area .BtnEmote:hover, .BtnMic:hover{  
-  color: #fff;
-  background-color: #4a69bb;
-}
-
 
 .typing-area button {
   color: #4a69bb;

@@ -19,8 +19,6 @@ if (!isset($_SESSION['unique_id'])) {
                 </div>
                 <div class="col-1"></div>
             </header>
-
-
             <form id="formAddContact" enctype="multipart/form-data" autocomplete="off">
                 <div class="field input">
                     <label>User ID</label>

@@ -31,15 +31,7 @@ if (!isset($_SESSION['unique_id'])) {
                     <br>
                     <p class="m-0 p-0"><?php echo $row['status']; ?></p>
                 </div>
-                <div class="col d-flex justify-content-end align-items-center">
-                    <a href="./php/videoContact.php?id_user=<?php echo $_SESSION['unique_id']; ?>&id_other_user=<?php echo $row['unique_id']; ?>"
-                        class="del-contact">
-                        <i class="fas fa-video"></i>
-                    </a>
-                    <a href="./php/phoneContact.php?id_user=<?php echo $_SESSION['unique_id']; ?>&id_other_user=<?php echo $row['unique_id']; ?>"
-                        class="del-contact">
-                        <i class="fas fa-phone"></i>
-                    </a>
+                <div class="col d-flex justify-content-end align-items-center">                    
                     <div>
                         <button type="button" class="del-contact btn dropdown-toggle dropdown-toggle-split border-0"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,18 +86,12 @@ if (!isset($_SESSION['unique_id'])) {
             <div class="chat-box">
 
             </div>
-            <form action="#" class="typing-area" enctype="multipart/form-data">
-                <div name="btnEmote" id="btnEmote" class="BtnEmote">
-                    <i class="fas fa-smile"></i>
-                </div>
+            <form action="#" class="typing-area" enctype="multipart/form-data">                
                 <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
                 <input type="text" name="message" class="input-field" placeholder="Ketik pesan" autocomplete="off">
                 <div name="btnFile" id="btnFile" class="BtnFile">
                     <i class="fas fa-paperclip"></i>
-                </div>
-                <div name="btnMic" id="btnMic" class="BtnMic">
-                    <i class="fas fa-microphone"></i>
-                </div>
+                </div>                
                 <input type="file" name="file" id="file" class="file" style="width: auto; display: none;">
                 <button id="sendBtnChat"><i class="fab fa-telegram-plane"></i></button>
             </form>

@@ -17,9 +17,18 @@ alert('<?= $SESSION['message'] ?>');
 
 <body>
     <div class="wrapper">
+
+        <?php if (isset($_SESSION['message'])) { ?>
+        <script>
+        alert("<?php echo $_SESSION['message']; ?>");
+        <?php $_SESSION['message'] = null; ?>
+        </script>
+
+        <?php } ?>
+
         <section class="users">
             <header>
-                <div class="content">
+                <div class="content col">
                     <?php
                     $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
                     if (mysqli_num_rows($sql) > 0) {
@@ -34,10 +43,43 @@ alert('<?= $SESSION['message'] ?>');
                     <img src="php/images/<?php echo $row['img']; ?>" alt="">
                     <div class="details">
                         <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
-                        <p style="color: #000;"><?php echo $row['status']; ?></p>
+                        <br>
+                        <p style="color: #000;" class="m-0 p-0"><?php echo $row['status']; ?></p>
                     </div>
                 </div>
-                <div>
+                <div class="notifications col-2">
+                    <div class="button-notif justify-content-center align-items-center text-center">                       
+                        <button type="button" class="btn btn-outline-primary position-relative" id="liveToastBtn">
+                            <i class="fas fa-bell"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                99+
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="assets/file/messi.jpg" class="rounded-circle me-2" alt="...">
+                                <strong class="me-auto">Lionel Messi</strong>
+                                <small>11 mins ago</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Hello, world! This is a toast message.
+                                <div class="mt-2 pt-2 border-top">
+                                    <button type="button" class="btn btn-primary btn-sm">Baca</button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                        data-bs-dismiss="toast">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 text-center">
+
                     <button type="button" class="btn dropdown-toggle dropdown-toggle-split border-0"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
@@ -99,11 +141,11 @@ alert('<?= $SESSION['message'] ?>');
             </header>
             <div class="contact-grouplist justify-content-start">
                 <a href="groups.php?user_id=<?php echo $row['unique_id']; ?>" class="lgrup">
-                    <i class="fas fa-users"></i> Daftar Grup
+                    <i class="fas fa-users"></i> Grup
                 </a>
                 <a href="addContact.php?user_id=<?php echo $row['unique_id']; ?>" class="lgrup">
                     <i class="fas fa-user-plus"></i> Tambah Kontak
-                </a>
+                </a>                
             </div>
             <div class="search">
                 <span class="text">Pilih kontak untuk mulai obrolan</span>
@@ -250,6 +292,17 @@ alert('<?= $SESSION['message'] ?>');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script>
+    const toastTrigger = document.getElementById('liveToastBtn')
+    const toastLiveExample = document.getElementById('liveToast')
+
+    if (toastTrigger) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastTrigger.addEventListener('click', () => {
+            toastBootstrap.show()
+        })
+    }
     </script>
 </body>
 

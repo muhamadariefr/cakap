@@ -88,14 +88,16 @@ if (!isset($_SESSION['unique_id'])) {
                         <br>
                         <?php } ?>
                         <?php } ?>
+                        <?php if ($rowUser["id_role"] != 1 && $member['unique_id'] == $_SESSION['unique_id']) { ?>
+                        <a href="php/leaveGroup.php?idGroup=<?php echo $_GET["idGroup"]; ?>" class="left-action">
+                            <i class="fas fa-sign-out-alt"></i> Keluar
+                        </a>
+                        <br>
+                        <?php } ?>
                     </div>
                 </div>
                 <?php } ?>
-            </div>
-
-            <div>
-
-            </div>
+            </div>            
         </section>
     </div>
     <script src="javascript/listGroup.js"></script>
